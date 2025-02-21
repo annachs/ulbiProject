@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "noImplicitAny": true, // необх явно указывать типы
+        "module": "ESNext",
+        "target": "es5",
+        "jsx": "react-jsx",
+        "allowJs": true, // обработка не только ts файлов, но и js
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "paths": {
+          "*": ["./src/*"]
+        },
+        "allowSyntheticDefaultImports": true, // вместо import * as просто import
+        "esModuleInterop": true, // позволяет работать с пакетами, исп require() module.export, как с обыч пакетами с помощью import
+    },
+    "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
+  "include": [
+    ".config/jest/jest-setup.ts",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+  ],
+}
