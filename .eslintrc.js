@@ -42,7 +42,7 @@ module.exports = {
                 markupOnly: true,
                 ignoreAttribute: ['data-testid', 'to'],
             }],
-        'max-len': ['error', { ignoreComments: true, code: 100 }],
+        'max-len': ['error', { ignoreComments: true, code: 120 }],
         'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
         'jsx-a11y/click-events-have-key-events': 'off',
         'jsx-a11y/no-static-element-interactions': 'off',
