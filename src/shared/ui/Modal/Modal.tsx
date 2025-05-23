@@ -1,4 +1,4 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import React, { ReactNode, useEffect, useState } from 'react';
 import cls from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
@@ -21,7 +21,7 @@ export const Modal = (props: ModalProps) => {
     } = props;
     const [isMounted, setIsMounted] = useState(false);
 
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [cls.opened]: isOpen,
     };
 
@@ -42,7 +42,7 @@ export const Modal = (props: ModalProps) => {
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
-                onClose();
+                onClose?.();
             }
         };
 

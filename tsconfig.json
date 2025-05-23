@@ -8,6 +8,7 @@
         "allowJs": true, // обработка не только ts файлов, но и js
         "moduleResolution": "node",
         "baseUrl": ".",
+        "strict": true,
         "paths": {
           "*": ["./src/*"]
         },
@@ -22,6 +23,6 @@
   "include": [
     ".config/jest/jest-setup.ts",
     "./src/**/*.ts",
-    "./src/**/*.tsx",
+    "./src/**/*.tsx", 
   ],
 }
