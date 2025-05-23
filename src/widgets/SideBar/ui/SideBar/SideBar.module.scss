@@ -29,33 +29,10 @@
     gap: 10px;
 }
 
-.item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-justify: center;
-}
-
-.link {
-    opacity: 1;
-    transition: opacity 0.2s ease;
-    white-space: nowrap;
-}
-
-.icon {
-    fill: var(--inverted-primary-color);
-}
-
 .collapsed {
     width: var(--sidebar-collapsed-width);
 
     .switchers {
         flex-direction: column;
-    }
-
-    .link {
-        opacity: 0;
-        width: 0;
-        transition: opacity 0.2s ease;
     }
 }
