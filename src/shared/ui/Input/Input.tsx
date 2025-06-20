@@ -1,18 +1,18 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import React, {
     ChangeEvent, InputHTMLAttributes, memo, useEffect, useRef, useState,
 } from 'react';
 import cls from './Input.module.scss';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | ' readOnly'>;
 
 interface InputProps extends HTMLInputProps {
     className?: string;
     type?: string;
     placeholder?: string;
     autofocus?: boolean;
-    value?: string;
+    value?: string | number;
+    readonly?: boolean;
     onChange?: (value: string) => void;
 }
 
@@ -23,11 +23,10 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         autofocus,
         value,
+        readonly,
         onChange,
         ...otherProps
     } = props;
-
-    const { t } = useTranslation();
 
     const ref = useRef<HTMLInputElement>(null);
 
@@ -58,8 +57,12 @@ export const Input = memo((props: InputProps) => {
         setCaretPosition(e.target.value.length);
     };
 
+    const mods: Mods = {
+        [cls.readonly]: readonly,
+    };
+
     return (
-        <div className={classNames(cls.InputWrapper, {}, [className])}>
+        <div className={classNames(cls.InputWrapper, mods, [className])}>
             {
                 placeholder && (
                     <div className={cls.placeholder}>
@@ -77,10 +80,11 @@ export const Input = memo((props: InputProps) => {
                     onBlur={onBlur}
                     onFocus={onFocus}
                     onSelect={onSelect}
+                    readOnly={readonly}
                     {...otherProps}
                 />
                 {
-                    isFocused && (
+                    isFocused && !readonly && (
                         <span
                             className={cls.caret}
                             style={{ left: `${caretPosition * 9}px` }}
