@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import { BuildOptions } from './types/config';
 import { buildCssLoader } from './loaders/buildCssLoader';
+import { buildBabelLoader } from './loaders/buildBabelLoader';
 
 export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     // loader нужны для обработки файлов, выходящих за рамки js
@@ -32,16 +33,7 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     };
 
     // babel-loader
-    const babelLoader = {
-        test: /\.$/,
-        exclude: /node_modules/,
-        use: {
-            loader: 'babel-loader',
-            options: {
-                presets: ['@babel/preset-env'],
-            },
-        },
-    };
+    const babelLoader = buildBabelLoader(isDev);
 
     return [
         fileLoader,
